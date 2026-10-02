@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} — {{ site_name }}{% endblock %}
+
+{% block content %}
+<article class="article-page">
+    <header class="article-hero">
+        <div class="container article-hero-grid">
+            <div class="article-title-wrap">
+                <a class="back-link" href="{{ url_for('home') }}#topics"><span aria-hidden="true">→</span> بازگشت به موضوع‌ها</a>
+                <div class="article-meta"><span>{{ article.category }}</span><i></i><span>{{ article.read_time }}</span></div>
+                <h1>{{ article.title }}</h1>
+                <p>{{ article.lead }}</p>
+            </div>
+            <div class="sky-illustration" aria-hidden="true">
+                <div class="sun-disc"></div>
+                <div class="ray ray-one"></div>
+                <div class="ray ray-two"></div>
+                <div class="ray ray-three"></div>
+                <div class="atmosphere atmosphere-one"></div>
+                <div class="atmosphere atmosphere-two"></div>
+                <div class="earth-curve"></div>
+                <span class="light-dot dot-one"></span><span class="light-dot dot-two"></span><span class="light-dot dot-three"></span>
+                <p>نور خورشید + جو زمین</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container article-layout">
+        <aside class="article-aside">
+            <p>در این مقاله</p>
+            <nav aria-label="فهرست مقاله">
+                <a href="#light">۱. نور سفید، رنگارنگ است</a>
+                <a href="#air">۲. هوا خالی نیست</a>
+                <a href="#blue">۳. چرا دقیقاً آبی؟</a>
+                <a href="#sunset">۴. غروب چرا سرخ است؟</a>
+            </nav>
+            <div class="aside-note"><span>زمان مطالعه</span><strong>حدود ۶ دقیقه</strong></div>
+        </aside>
+
+        <div class="article-body">
+            <section class="opening-answer">
+                <span class="answer-label">جواب در یک نگاه</span>
+                <p>وقتی نور سفید خورشید وارد جو می‌شود، با مولکول‌های بسیار ریز هوا برخورد می‌کند. طول موج‌های کوتاه‌تر—به‌ویژه آبی—بیشتر به اطراف پخش می‌شوند. پس از هر طرف آسمان، نور آبی بیشتری به چشم ما می‌رسد.</p>
+            </section>
+
+            <section id="light">
+                <span class="section-number">۰۱</span>
+                <h2>نور سفید، آن‌قدرها هم سفید نیست</h2>
+                <p>نوری که از خورشید می‌رسد در نگاه اول سفید است، اما در واقع مجموعه‌ای از همه‌ی رنگ‌های مرئی است؛ همان رنگ‌هایی که در رنگین‌کمان می‌بینیم. هر رنگ طول موج متفاوتی دارد.</p>
+                <div class="spectrum" aria-label="طیف نور مرئی">
+                    <div class="spectrum-bar"></div>
+                    <div class="spectrum-labels"><span>طول موج کوتاه<br><b>بنفش و آبی</b></span><span>طول موج بلند<br><b>نارنجی و قرمز</b></span></div>
+                </div>
+                <p>می‌توانی نور را مثل موج‌های روی آب تصور کنی: بعضی موج‌ها کوتاه و فشرده‌اند و بعضی بلند و کشیده. این تفاوت بعداً تعیین می‌کند هر رنگ در جو چه رفتاری داشته باشد.</p>
+            </section>
+
+            <section id="air">
+                <span class="section-number">۰۲</span>
+                <h2>هوا خالی نیست</h2>
+                <p>جو زمین از مولکول‌های ریزی مثل نیتروژن و اکسیژن پر شده است. این مولکول‌ها بسیار کوچک‌تر از طول موج نورند. وقتی نور به آن‌ها می‌رسد، بخشی از آن در جهت‌های مختلف پراکنده می‌شود؛ پدیده‌ای که «پراکندگی رایلی» نام دارد.</p>
+                <figure class="explain-card">
+                    <div class="beam-diagram" aria-hidden="true">
+                        <span class="incoming-beam"></span>
+                        <span class="molecule"></span>
+                        <span class="scatter s-one"></span><span class="scatter s-two"></span><span class="scatter s-three"></span><span class="scatter s-four"></span>
+                    </div>
+                    <figcaption><strong>یک برخورد، چند مسیر</strong><br>مولکول هوا نور رسیده را به جهت‌های گوناگون می‌فرستد.</figcaption>
+                </figure>
+            </section>
+
+            <section id="blue">
+                <span class="section-number">۰۳</span>
+                <h2>چرا دقیقاً رنگ آبی؟</h2>
+                <p>میزان پراکندگی به طول موج بستگی دارد. نور آبی طول موج کوتاه‌تری نسبت به قرمز دارد و به همین دلیل بسیار بیشتر در جو پراکنده می‌شود. هر نقطه‌ای از آسمان که نگاه کنیم، بخشی از همین نور پراکنده‌ی آبی وارد چشممان می‌شود.</p>
+                <aside class="fact-box">
+                    <span>یک نکته‌ی کنجکاوی‌برانگیز</span>
+                    <p>بنفش حتی از آبی بیشتر پراکنده می‌شود؛ اما خورشید نور بنفش کمتری می‌فرستد و چشم انسان هم به آن حساسیت کمتری دارد. حاصل نهایی برای ما آبی دیده می‌شود.</p>
+                </aside>
+            </section>
+
+            <section id="sunset">
+                <span class="section-number">۰۴</span>
+                <h2>پس چرا غروب، سرخ و نارنجی است؟</h2>
+                <p>هنگام غروب، نور خورشید مسیر بسیار طولانی‌تری را در جو طی می‌کند. در این راه، بیشتر نورهای آبی پیش از رسیدن به چشم ما به اطراف پراکنده شده‌اند. آنچه مستقیم باقی می‌ماند، رنگ‌های با طول موج بلندتر یعنی زرد، نارنجی و قرمز است.</p>
+                <div class="sunset-compare">
+                    <div class="compare-day"><span class="mini-sun"></span><b>ظهر</b><small>مسیر کوتاه‌تر در جو</small></div>
+                    <div class="compare-sunset"><span class="mini-sun"></span><b>غروب</b><small>مسیر طولانی‌تر در جو</small></div>
+                </div>
+            </section>
+
+            <section class="article-summary">
+                <span>خلاصه‌ی ماجرا</span>
+                <h2>آسمان آبی است چون جو، نور آبی را در همه‌جا پخش می‌کند.</h2>
+                <p>پس دفعه‌ی بعد که سرت را بالا می‌گیری، در واقع نور خورشید را می‌بینی که میان میلیاردها مولکول هوا دست‌به‌دست شده و از گوشه‌ای از آسمان به چشم تو رسیده است.</p>
+            </section>
+
+            <footer class="article-end">
+                <div><span>آخرین بازبینی</span><strong>{{ article.updated }}</strong></div>
+                <a class="button button-primary" href="{{ url_for('home') }}#topics">موضوع بعدی <span aria-hidden="true">←</span></a>
+            </footer>
+        </div>
+    </div>
+</article>
+{% endblock %}

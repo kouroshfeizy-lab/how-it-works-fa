@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% import "_icons.html" as icons %}
+
+{% block title %}سازوکار جهان — جهان را لمس کن{% endblock %}
+
+{% block content %}
+<section id="world" class="hero">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <p class="eyebrow"><span></span> اطرافت پر از پاسخ است</p>
+            <h1>جهان را<br><em>لمس کن.</em></h1>
+            <p class="hero-lead">روی نقطه‌های زمین بزن؛ هر کدام دری به یک سازوکار پنهان‌اند. از نور و باران تا قلب، برق، GPS و اقیانوس.</p>
+            <div class="hero-actions">
+                <a class="button button-primary" href="#topics">همه‌ی موضوع‌ها <span aria-hidden="true">↓</span></a>
+                <a class="button button-ghost" href="{{ url_for('article', slug='why-sky-is-blue') }}">مقاله‌ی ویژه <span aria-hidden="true">←</span></a>
+            </div>
+            <div class="live-stat"><span class="pulse-dot"></span><b>۱۰</b> سازوکار آماده‌ی کشف</div>
+        </div>
+
+        <div class="world-explorer" data-world-explorer>
+            <div class="planet-stage" aria-label="کره‌ی تعاملی موضوع‌های سازوکار جهان">
+                <div class="planet-halo"></div>
+                <div class="planet" aria-hidden="true">
+                    <svg class="planet-map" viewBox="0 0 440 440">
+                        <defs>
+                            <radialGradient id="ocean" cx="34%" cy="28%" r="78%"><stop offset="0" stop-color="#208895"/><stop offset=".42" stop-color="#0c5364"/><stop offset=".78" stop-color="#082a3b"/><stop offset="1" stop-color="#04101b"/></radialGradient>
+                            <linearGradient id="land" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#538a69"/><stop offset="1" stop-color="#1e594d"/></linearGradient>
+                            <clipPath id="globe-clip"><circle cx="220" cy="220" r="216"/></clipPath>
+                        </defs>
+                        <circle cx="220" cy="220" r="216" fill="url(#ocean)"/>
+                        <g clip-path="url(#globe-clip)" class="globe-grid">
+                            <ellipse cx="220" cy="220" rx="216" ry="76"/><ellipse cx="220" cy="220" rx="216" ry="145"/>
+                            <ellipse cx="220" cy="220" rx="78" ry="216"/><ellipse cx="220" cy="220" rx="150" ry="216"/>
+                        </g>
+                        <g clip-path="url(#globe-clip)" fill="url(#land)" class="continents">
+                            <path d="M45 105l35-36 57-17 42 8 25 25-12 22-35 7-7 26-31 11-12 35-27 7-20-25 8-27-21-13Z"/>
+                            <path d="M153 185l38 9 28 35-7 47-20 27-11 65-27-19-12-49-23-35 10-38Z"/>
+                            <path d="M229 72l42-25 62 12 12 22 56 19 25 37-20 25-44-3-21 20-37-12-17 21-48-20-30 5-12-34 25-22-11-21Z"/>
+                            <path d="M276 190l49-9 32 32-9 46-25 56-38-26-17-54Z"/>
+                            <path d="M355 302l35 5 24 28-20 25-44-14-9-25Z"/>
+                            <path d="M100 396l72-13 91 14 60-7 46 27H82Z" opacity=".72"/>
+                        </g>
+                        <g clip-path="url(#globe-clip)" class="clouds" fill="none">
+                            <path d="M35 154c56-25 95-18 136 4M272 112c42-14 88-6 130 16M263 326c48 14 82 9 126-11"/>
+                        </g>
+                        <circle cx="220" cy="220" r="215" fill="none" stroke="rgba(127,238,229,.42)"/>
+                    </svg>
+                    <span class="night-glow"></span>
+                </div>
+                {% set points = ['point-sky', 'point-web', 'point-heart', 'point-plane', 'point-mind', 'point-rain', 'point-tide', 'point-volcano', 'point-electric', 'point-gps'] %}
+                {% for topic in topics %}
+                <a class="world-point {{ points[loop.index0] }}" href="{{ url_for('topic', slug=topic.slug) }}"
+                   aria-label="باز کردن موضوع {{ topic.title }}">
+                    <span class="point-icon">{{ icons.topic_icon(topic.icon_key) }}</span><i></i>
+                    <span class="point-card">
+                        <small>{{ ['۰۱', '۰۲', '۰۳', '۰۴', '۰۵', '۰۶', '۰۷', '۰۸', '۰۹', '۱۰'][loop.index0] }} · {{ topic.category }}</small>
+                        <strong>{{ topic.title }}</strong>
+                        <em>{{ topic.description }}</em>
+                        <b>باز کردن <span aria-hidden="true">←</span></b>
+                    </span>
+                </a>
+                {% endfor %}
+                <div class="orbit-label orbit-label-one">دانش</div>
+                <div class="orbit-label orbit-label-two">کشف</div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-cue"><span></span> برای کشف پایین برو</div>
+</section>
+
+<section id="topics" class="topics-section section-pad">
+    <div class="container">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow"><span></span> آرشیو کنجکاوی</p>
+                <h2>یک سؤال انتخاب کن؛<br><em>جوابش این‌جاست.</em></h2>
+            </div>
+            <div class="topic-tools" role="group" aria-label="فیلتر موضوع‌ها">
+                <button class="filter-button is-active" type="button" data-filter="all">همه</button>
+                <button class="filter-button" type="button" data-filter="nature">طبیعت</button>
+                <button class="filter-button" type="button" data-filter="human">انسان</button>
+                <button class="filter-button" type="button" data-filter="tech">فناوری</button>
+            </div>
+        </div>
+
+        <div class="topic-grid">
+            {% set groups = ['nature', 'tech', 'human', 'tech', 'human', 'nature', 'nature', 'nature', 'tech', 'tech'] %}
+            {% for topic in topics %}
+            <a class="topic-card topic-{{ topic.color }}" href="{{ url_for('topic', slug=topic.slug) }}" data-group="{{ groups[loop.index0] }}">
+                <div class="card-glow" aria-hidden="true"></div>
+                <div class="card-topline">
+                    <span class="topic-number">{{ ['۰۱', '۰۲', '۰۳', '۰۴', '۰۵', '۰۶', '۰۷', '۰۸', '۰۹', '۱۰'][loop.index0] }}</span>
+                    <span class="topic-category">{{ topic.category }}</span>
+                </div>
+                <div class="topic-icon" aria-hidden="true">{{ icons.topic_icon(topic.icon_key) }}</div>
+                <h3>{{ topic.title }}</h3>
+                <p>{{ topic.description }}</p>
+                <div class="card-footer"><span>{{ topic.read_time }}</span><b>کشف کن <i aria-hidden="true">↙</i></b></div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section id="about" class="manifesto section-pad">
+    <div class="container manifesto-grid">
+        <div class="manifesto-visual" aria-hidden="true"><span>؟</span><i></i><i></i><i></i></div>
+        <div class="manifesto-copy">
+            <p class="eyebrow"><span></span> درباره‌ی این جهان</p>
+            <blockquote>دانستن فقط جمع‌کردن اطلاعات نیست؛ دیدنِ دوباره‌ی دنیاست.</blockquote>
+            <p>هر موضوع را از یک پرسش آشنا شروع می‌کنیم، لایه‌هایش را کنار می‌زنیم و با یک تصویر ذهنی روشن به پایان می‌رسانیم—ساده، دقیق و قابل لمس.</p>
+            <a class="button button-primary" href="{{ url_for('topic', slug='how-internet-works') }}">یک موضوع تصادفی <span aria-hidden="true">↙</span></a>
+        </div>
+        <div class="manifesto-facts">
+            <button type="button" data-jump="topics"><strong>۱۰</strong><span>موضوع تعاملی</span></button>
+            <a href="{{ url_for('article', slug='why-sky-is-blue') }}"><strong>۰۱</strong><span>مقاله‌ی عمیق</span></a>
+            <button type="button" data-jump="world"><strong>∞</strong><span>سؤال تازه</span></button>
+        </div>
+    </div>
+</section>
+
+<section class="closing-cta section-pad">
+    <div class="container closing-inner">
+        <p>برای شروع آماده‌ای؟</p>
+        <h2>یک نقطه را انتخاب کن.<br><span>بقیه‌اش با کنجکاوی تو.</span></h2>
+        <a class="round-arrow" href="#world" aria-label="بازگشت به کره تعاملی">↑</a>
+    </div>
+</section>
+{% endblock %}

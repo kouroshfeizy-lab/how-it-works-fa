@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% import "_icons.html" as icons %}
+
+{% block title %}{{ topic.title }} — {{ site_name }}{% endblock %}
+
+{% block content %}
+<article class="topic-page topic-{{ topic.color }}">
+    <header class="topic-hero">
+        <div class="container">
+            <a class="back-link" href="{{ url_for('home') }}#topics"><span aria-hidden="true">→</span> بازگشت به همه‌ی موضوع‌ها</a>
+            <div class="topic-hero-grid">
+                <div class="topic-hero-copy">
+                    <div class="article-meta"><span>{{ topic.category }}</span><i></i><span>{{ topic.read_time }} مطالعه</span></div>
+                    <h1>{{ topic.title }}</h1>
+                    <p>{{ topic.description }}</p>
+                    <div class="topic-answer"><span>جواب کوتاه</span><strong>{{ topic.answer }}</strong></div>
+                </div>
+                <div class="topic-orb" aria-hidden="true">
+                    <div class="orb-ring ring-one"></div><div class="orb-ring ring-two"></div>
+                    <span>{{ icons.topic_icon(topic.icon_key) }}</span>
+                    <div class="orb-signal"><b>{{ topic.signal }}</b><small>{{ topic.signal_label }}</small></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="discovery-tabs section-pad" data-tabs>
+        <div class="container">
+            <div class="tabs-heading">
+                <div><p class="eyebrow"><span></span> بیشتر کشف کن</p><h2>این سازوکار را<br>از چهار زاویه ببین.</h2></div>
+                <p>هر تب یک راه تازه برای فهمیدن همین موضوع است.</p>
+            </div>
+            <div class="tab-shell">
+                <div class="tab-list" role="tablist" aria-label="بخش‌های موضوع">
+                    <button class="tab-button is-active" id="tab-mechanism" role="tab" aria-selected="true" aria-controls="panel-mechanism" data-tab-target="mechanism"><span>۰۱</span> سازوکار</button>
+                    <button class="tab-button" id="tab-facts" role="tab" aria-selected="false" aria-controls="panel-facts" data-tab-target="facts"><span>۰۲</span> نکته‌ها</button>
+                    <button class="tab-button" id="tab-surprise" role="tab" aria-selected="false" aria-controls="panel-surprise" data-tab-target="surprise"><span>۰۳</span> شگفتی</button>
+                    <button class="tab-button" id="tab-try" role="tab" aria-selected="false" aria-controls="panel-try" data-tab-target="try"><span>۰۴</span> امتحان کن</button>
+                </div>
+                <div class="tab-panels">
+                    <section class="tab-panel is-active" id="panel-mechanism" role="tabpanel" aria-labelledby="tab-mechanism" data-tab-panel="mechanism">
+                        <div class="panel-title"><small>سازوکار در سه حرکت</small><h2>از آغاز تا نتیجه، قدم‌به‌قدم.</h2></div>
+                        <div class="step-list">
+                            {% for step in topic.steps %}
+                            <div class="mechanism-step"><span>{{ ['۰۱', '۰۲', '۰۳'][loop.index0] }}</span><div><h3>{{ step.title }}</h3><p>{{ step.text }}</p></div></div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                    <section class="tab-panel" id="panel-facts" role="tabpanel" aria-labelledby="tab-facts" data-tab-panel="facts" hidden>
+                        <div class="panel-title"><small>به‌یادسپردنی‌ها</small><h2>سه نکته‌ی کوتاه و مهم.</h2></div>
+                        <div class="fact-grid">
+                            {% for fact in topic.facts %}<div class="fact-card"><span>{{ ['الف', 'ب', 'ج'][loop.index0] }}</span><p>{{ fact }}</p></div>{% endfor %}
+                        </div>
+                    </section>
+                    <section class="tab-panel" id="panel-surprise" role="tabpanel" aria-labelledby="tab-surprise" data-tab-panel="surprise" hidden>
+                        <div class="surprise-layout"><div class="surprise-graphic" aria-hidden="true">{{ icons.topic_icon(topic.icon_key) }}<i></i><i></i></div><div><small>آیا می‌دانستی؟</small><h2>بخش غیرمنتظره‌ی ماجرا</h2><p>{{ topic.surprise }}</p></div></div>
+                    </section>
+                    <section class="tab-panel" id="panel-try" role="tabpanel" aria-labelledby="tab-try" data-tab-panel="try" hidden>
+                        <div class="experiment-layout"><div class="experiment-number">۴</div><div><small>خودت امتحان کن</small><h2>یک مشاهده‌ی کوچک، یک فهم بزرگ</h2><p>{{ topic.try_it }}</p><span>همیشه ایمنی را رعایت کن و سراغ برق، آتش یا مواد ناشناخته نرو.</span></div></div>
+                    </section>
+                </div>
+            </div>
+            {% if topic.article_slug %}
+            <div class="deep-dive">
+                <div><span>می‌خواهی عمیق‌تر شوی؟</span><h2>نسخه‌ی کامل این داستان آماده است.</h2></div>
+                <a class="button button-primary" href="{{ url_for('article', slug=topic.article_slug) }}">خواندن مقاله‌ی کامل <span aria-hidden="true">←</span></a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="related-section section-pad">
+        <div class="container">
+            <div class="section-heading compact"><div><p class="eyebrow"><span></span> مسیر بعدی</p><h2>کنجکاوی را ادامه بده.</h2></div></div>
+            <div class="related-grid">
+                {% for item in related_topics %}
+                <a href="{{ url_for('topic', slug=item.slug) }}" class="related-card topic-{{ item.color }}"><span>{{ icons.topic_icon(item.icon_key) }}</span><div><small>{{ item.category }}</small><h3>{{ item.title }}</h3></div><b>←</b></a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}صفحه پیدا نشد — {{ site_name }}{% endblock %}
+
+{% block content %}
+<section class="error-page">
+    <div class="container">
+        <span>۴۰۴</span>
+        <h1>این پرسش هنوز جوابی ندارد.</h1>
+        <p>صفحه‌ای که دنبالش بودی پیدا نشد؛ اما چند پرسش جالب دیگر در صفحه‌ی اصلی منتظرند.</p>
+        <a class="button button-primary" href="{{ url_for('home') }}">بازگشت به صفحه اصلی <span aria-hidden="true">←</span></a>
+    </div>
+</section>
+{% endblock %}
