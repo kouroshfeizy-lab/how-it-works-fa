@@ -1,20 +1,14 @@
 <!doctype html>
-<html lang="fa" dir="rtl" class="no-js">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#070b0f">
     <meta name="description" content="سازوکار جهان؛ پاسخ‌های ساده، دقیق و تعاملی برای پرسش‌های کنجکاوانه.">
     <title>{% block title %}{{ site_name }}{% endblock %}</title>
-    <script>document.documentElement.classList.replace('no-js', 'js')</script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="page-loader" aria-hidden="true">
-        <div class="loader-world"><span></span><i></i><i></i></div>
-        <p>در حال چیدن جهان</p>
-        <b>HOW IT WORKS</b>
-    </div>
     <a class="skip-link" href="#main-content">رفتن به محتوای اصلی</a>
     <div class="ambient ambient-one" aria-hidden="true"></div>
     <div class="ambient ambient-two" aria-hidden="true"></div>
@@ -62,3 +56,4 @@
     <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </body>
 </html>
+
