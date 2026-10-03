@@ -1,7 +1,3 @@
-const finishPageLoad = () => document.documentElement.classList.add('is-loaded');
-window.addEventListener('load', () => window.setTimeout(finishPageLoad, 420), { once: true });
-window.setTimeout(finishPageLoad, 1800);
-
 const menuButton = document.querySelector('.menu-button');
 const primaryNav = document.querySelector('.primary-nav');
 
@@ -115,3 +111,4 @@ if (articleSections.length && articleLinks.length && 'IntersectionObserver' in w
 
   articleSections.forEach((section) => observer.observe(section));
 }
+
